@@ -95,11 +95,6 @@
 				slides.eq(pos).css({ left: '-100%' }).animate({ left: 0 }, 500);
 			}
 
-			function stopCurrentVideo() {
-				$('.slider-video:eq(' + pos + ')').load().removeAttr('controls')
-					.siblings('.overlay-content').show().find('.play-button').show();
-			}
-
 			$('.left').click(previousSlide);
 			$('.right').click(nextSlide);
 		})
