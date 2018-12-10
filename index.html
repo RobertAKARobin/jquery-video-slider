@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<head>
+	<style>
+	* {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		-o-box-sizing: border-box;
+		box-sizing: border-box;
+		margin:0;
+		padding:0;
+	}
+	html {
+		font-size: 16px;
+	}
+	body {
+		font-family: Arial, sans-serif;
+		color: #fff;
+	}
+	/* Additionnal styles */
+	.video-slider {
+		width: 100%;
+		height: 20em;
+		background: #444;
+		position: relative;
+		overflow: hidden;
+	}
+	.slide {
+		position: absolute;
+		top: 0;
+		left: 100%;
+		height: 100%;
+		width: 100%;
+		text-align: center;
+		overflow: hidden;
+	}
+	.slide:first-child{
+		left: 0;
+	}
+	.overlay-content {
+		background: rgba(0, 0, 0, .7);
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+	}
+	.play-button {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 4em;
+		height: 3em;
+		margin-top: -1.5em;
+		margin-left: -2em;
+		background: red;
+		border-radius: 1em;
+		cursor: pointer;
+	}
+	.play-button:after {
+		content:"\25b6";
+		font-size: 2em;
+		line-height: 1.4em;
+	}
+	video{
+		max-height: 100%;
+		max-width: 100%;
+	}
+	.slide-arrow{
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 45%;
+		width: 15%;
+		cursor: pointer;
+		opacity: .2;
+	}
+	.slide-arrow:hover{
+		opacity: 1;
+	}
+	.slide-arrow:after{
+		content: "\003c";
+		text-align: center;
+		display: block;
+		height: 10%;
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		font-size: 3em;
+	}
+	.slide-arrow.right:after{
+		content: "\003e";
+	}
+	.slide-arrow.right{
+		left: auto;
+		right: 0;
+	}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
+	</script>
+</head>
+<body>
+	<div class="video-slider">
+		<!-- SLIDE 1 -->
+		<div class="slide">
+			<video class="slider-video" poster="http://tinyurl.com/ne24w38">
+				<source src="http://tinyurl.com/npmt9td" type="video/mp4" />
+				<source src="http://tinyurl.com/myowmhx" type="video/webm" />
+				<source src="http://tinyurl.com/my3pdd9" type="video/ogg" />
+			</video>
+			<div class="overlay-content">
+				<div class="play-button"></div>
+			</div>
+		</div>
+		<!-- SLIDE 2 -->
+		<div class="slide">
+			<video class="slider-video" poster="http://tinyurl.com/ne24w38">
+				<source src="http://tinyurl.com/npmt9td" type="video/mp4" />
+				<source src="http://tinyurl.com/myowmhx" type="video/webm" />
+				<source src="http://tinyurl.com/my3pdd9" type="video/ogg" />
+			</video>
+			<div class="overlay-content">
+				<div class="play-button"></div>
+			</div>
+		</div>
+		<!-- END OF SLIDES -->
+		<div class="slide-arrow left"></div>
+		<div class="slide-arrow right"></div>
+	</div>
+</body>
