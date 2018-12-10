@@ -37,34 +37,10 @@
 	.slide:first-child{
 		left: 0;
 	}
-	.overlay-content {
-		background: rgba(0, 0, 0, .7);
-		position: absolute;
-		top: 0;
-		left: 0;
+	.video{
 		height: 100%;
 		width: 100%;
-	}
-	.play-button {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		width: 4em;
-		height: 3em;
-		margin-top: -1.5em;
-		margin-left: -2em;
-		background: red;
-		border-radius: 1em;
-		cursor: pointer;
-	}
-	.play-button:after {
-		content:"\25b6";
-		font-size: 2em;
-		line-height: 1.4em;
-	}
-	video{
-		max-height: 100%;
-		max-width: 100%;
+		border:0;
 	}
 	.slide-arrow{
 		position: absolute;
@@ -98,32 +74,54 @@
 	}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://www.youtube.com/iframe_api"></script>
 	<script>
+		$(document).ready(function(){
+			var pos = 0,
+				slides = $('.slide'),
+				numOfSlides = slides.length;
+
+			function nextSlide() {
+				slides.get(pos).video.stopVideo()
+				slides.eq(pos).animate({ left: '-100%' }, 500);
+				pos = (pos >= numOfSlides - 1 ? 0 : ++pos);
+				slides.eq(pos).css({ left: '100%' }).animate({ left: 0 }, 500);
+			}
+
+			function previousSlide() {
+				slides.get(pos).video.stopVideo()
+				slides.eq(pos).animate({ left: '100%' }, 500);
+				pos = (pos == 0 ? numOfSlides - 1 : --pos);
+				slides.eq(pos).css({ left: '-100%' }).animate({ left: 0 }, 500);
+			}
+
+			function stopCurrentVideo() {
+				$('.slider-video:eq(' + pos + ')').load().removeAttr('controls')
+					.siblings('.overlay-content').show().find('.play-button').show();
+			}
+
+			$('.left').click(previousSlide);
+			$('.right').click(nextSlide);
+		})
+
+		function onYouTubeIframeAPIReady(){
+			$('.slide').each(function(index, slide) {
+				slide.video = new YT.Player($(slide).find('.video')[0])
+			})
+		}
 	</script>
 </head>
 <body>
 	<div class="video-slider">
 		<!-- SLIDE 1 -->
 		<div class="slide">
-			<video class="slider-video" poster="http://tinyurl.com/ne24w38">
-				<source src="http://tinyurl.com/npmt9td" type="video/mp4" />
-				<source src="http://tinyurl.com/myowmhx" type="video/webm" />
-				<source src="http://tinyurl.com/my3pdd9" type="video/ogg" />
-			</video>
-			<div class="overlay-content">
-				<div class="play-button"></div>
-			</div>
+			<iframe class="video" src="https://www.youtube.com/embed/YE7VzlLtp-4?ecver=2&enablejsapi=1
+" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 		</div>
 		<!-- SLIDE 2 -->
 		<div class="slide">
-			<video class="slider-video" poster="http://tinyurl.com/ne24w38">
-				<source src="http://tinyurl.com/npmt9td" type="video/mp4" />
-				<source src="http://tinyurl.com/myowmhx" type="video/webm" />
-				<source src="http://tinyurl.com/my3pdd9" type="video/ogg" />
-			</video>
-			<div class="overlay-content">
-				<div class="play-button"></div>
-			</div>
+			<iframe class="video" src="https://www.youtube.com/embed/YE7VzlLtp-4?ecver=2&enablejsapi=1
+" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 		</div>
 		<!-- END OF SLIDES -->
 		<div class="slide-arrow left"></div>
