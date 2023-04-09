@@ -80,8 +80,13 @@
 	<script src="https://www.youtube.com/iframe_api"></script>
 	<script>
 	$(document).ready(function () {
+		setUpSlider($('#slider1'));
+		setUpSlider($('#slider2'));
+	})
+
+	function setUpSlider($container) {
 		var pos = 0,
-			slides = $('.slide'),
+			slides = $container.find('.slide'),
 			numOfSlides = slides.length;
 
 		function nextSlide() {
@@ -99,9 +104,9 @@
 			slides.eq(pos).css({ left: '-100%' }).animate({ left: 0 }, 500);
 		}
 
-		$('.left').click(previousSlide);
-		$('.right').click(nextSlide);
-	})
+		$container.find('.left').click(previousSlide);
+		$container.find('.right').click(nextSlide);
+	}
 
 	function onYouTubeIframeAPIReady() {
 		$('.slide').each(function (index, slide) {
@@ -114,7 +119,21 @@
 	</script>
 </head>
 <body>
-	<div class="video-slider">
+	<div class="video-slider" id="slider1">
+		<!-- SLIDE 1 -->
+		<div class="slide">
+			<iframe class="video" src="https://www.youtube.com/embed/YE7VzlLtp-4?ecver=2&enablejsapi=1"></iframe>
+		</div>
+		<!-- SLIDE 2 -->
+		<div class="slide">
+			<iframe class="video" src="https://www.youtube.com/embed/YE7VzlLtp-4?ecver=2&enablejsapi=1"></iframe>
+		</div>
+		<!-- END OF SLIDES -->
+		<div class="slide-arrow left"></div>
+		<div class="slide-arrow right"></div>
+	</div>
+
+	<div class="video-slider" id="slider2">
 		<!-- SLIDE 1 -->
 		<div class="slide">
 			<iframe class="video" src="https://www.youtube.com/embed/YE7VzlLtp-4?ecver=2&enablejsapi=1"></iframe>
